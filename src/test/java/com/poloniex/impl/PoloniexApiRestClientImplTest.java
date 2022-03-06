@@ -3,6 +3,7 @@ package com.poloniex.impl;
 import com.poloniex.PoloniexApiClientFactory;
 import com.poloniex.PoloniexApiRestClient;
 import com.poloniex.domain.general.Asset;
+import com.poloniex.domain.market.MarketTicker;
 import org.hamcrest.collection.IsMapWithSize;
 import org.junit.jupiter.api.Test;
 
@@ -19,5 +20,11 @@ public class PoloniexApiRestClientImplTest {
     public void getAssets_ShouldReturnAssets() {
         Map<String, Asset> assets = poloniexApiRestClient.getAssets();
         assertThat(assets, allOf(notNullValue(), is(not(IsMapWithSize.anEmptyMap()))));
+    }
+
+    @Test
+    public void getMarketTickers_ShouldReturnMarketTickers() {
+        Map<String, MarketTicker> marketTickers = poloniexApiRestClient.getMarketTickers();
+        assertThat(marketTickers, allOf(notNullValue(), is(not(IsMapWithSize.anEmptyMap()))));
     }
 }

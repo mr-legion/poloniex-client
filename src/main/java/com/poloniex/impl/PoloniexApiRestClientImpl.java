@@ -2,6 +2,7 @@ package com.poloniex.impl;
 
 import com.poloniex.PoloniexApiRestClient;
 import com.poloniex.domain.general.Asset;
+import com.poloniex.domain.market.MarketTicker;
 
 import java.util.Map;
 
@@ -23,5 +24,12 @@ public class PoloniexApiRestClientImpl implements PoloniexApiRestClient {
     @Override
     public Map<String, Asset> getAssets() {
         return executeSync(poloniexApiService.getAssets());
+    }
+
+    // Market endpoints
+
+    @Override
+    public Map<String, MarketTicker> getMarketTickers() {
+        return executeSync(poloniexApiService.getMarketTickers());
     }
 }

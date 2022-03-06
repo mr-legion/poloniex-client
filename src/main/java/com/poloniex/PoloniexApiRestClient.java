@@ -1,6 +1,7 @@
 package com.poloniex;
 
 import com.poloniex.domain.general.Asset;
+import com.poloniex.domain.market.MarketTicker;
 
 import java.util.Map;
 
@@ -17,5 +18,14 @@ public interface PoloniexApiRestClient {
      * @return assets
      */
     Map<String, Asset> getAssets();
+
+    // Market endpoints
+
+    /**
+     * Get all the information about the markets.
+     *
+     * @return market tickers
+     */
+    Map<String, MarketTicker> getMarketTickers();
 
 }
