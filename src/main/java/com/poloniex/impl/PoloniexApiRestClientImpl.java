@@ -3,6 +3,7 @@ package com.poloniex.impl;
 import com.poloniex.PoloniexApiRestClient;
 import com.poloniex.domain.general.Asset;
 import com.poloniex.domain.market.MarketTicker;
+import com.poloniex.domain.market.OrderBook;
 
 import java.util.Map;
 
@@ -31,5 +32,10 @@ public class PoloniexApiRestClientImpl implements PoloniexApiRestClient {
     @Override
     public Map<String, MarketTicker> getMarketTickers() {
         return executeSync(poloniexApiService.getMarketTickers());
+    }
+
+    @Override
+    public OrderBook getOrderBook(String market, Integer limit) {
+        return executeSync(poloniexApiService.getOrderBook(market, limit));
     }
 }

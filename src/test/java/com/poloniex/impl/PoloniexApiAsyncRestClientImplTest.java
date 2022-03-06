@@ -4,6 +4,7 @@ import com.poloniex.PoloniexApiAsyncRestClient;
 import com.poloniex.PoloniexApiClientFactory;
 import com.poloniex.domain.general.Asset;
 import com.poloniex.domain.market.MarketTicker;
+import com.poloniex.domain.market.OrderBook;
 import org.hamcrest.collection.IsMapWithSize;
 import org.junit.jupiter.api.Test;
 
@@ -27,5 +28,12 @@ public class PoloniexApiAsyncRestClientImplTest {
     public void getMarketTickers_ShouldReturnMarketTickers() throws ExecutionException, InterruptedException {
         Map<String, MarketTicker> marketTickers = poloniexApiAsyncRestClient.getMarketTickers().get();
         assertThat(marketTickers, allOf(notNullValue(), is(not(IsMapWithSize.anEmptyMap()))));
+    }
+
+    @Test
+    public void getOrderBook_ShouldReturnOrderBookForBTCUSDT() throws ExecutionException, InterruptedException {
+        OrderBook orderBook = poloniexApiAsyncRestClient.getOrderBook("USDT_BTC", 10).get();
+        assertThat(orderBook.getAsks(), is(not(empty())));
+        assertThat(orderBook.getBids(), is(not(empty())));
     }
 }

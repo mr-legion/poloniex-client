@@ -2,6 +2,7 @@ package com.poloniex;
 
 import com.poloniex.domain.general.Asset;
 import com.poloniex.domain.market.MarketTicker;
+import com.poloniex.domain.market.OrderBook;
 
 import java.util.Map;
 
@@ -27,5 +28,14 @@ public interface PoloniexApiRestClient {
      * @return market tickers
      */
     Map<String, MarketTicker> getMarketTickers();
+
+    /**
+     * Get order book of a market.
+     *
+     * @param market ticker symbol (e.g. USDT_BTC)
+     * @param limit  depth of the order book. Max depth is 100.
+     * @return orderbook
+     */
+    OrderBook getOrderBook(String market, Integer limit);
 
 }
