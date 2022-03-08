@@ -2,6 +2,8 @@ package com.poloniex.impl;
 
 import com.poloniex.PoloniexApiError;
 import com.poloniex.exception.PoloniexApiException;
+import com.poloniex.security.ApiCredentials;
+import com.poloniex.security.AuthenticationInterceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -33,13 +35,27 @@ public class PoloniexApiServiceGenerator {
     }
 
     public <S> S createService(Class<S> serviceClass) {
+        return createService(serviceClass, null);
+    }
 
-        Retrofit retrofit = new Retrofit.Builder()
+    public <S> S createService(Class<S> serviceClass, ApiCredentials apiCredentials) {
+
+        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
                 .baseUrl(API_BASE_URL)
-                .addConverterFactory(converterFactory)
-                .client(client)
-                .build();
+                .addConverterFactory(converterFactory);
 
+        if (apiCredentials == null) {
+            retrofitBuilder.client(client);
+        } else {
+            // `adaptedClient` will use its own interceptor, but share thread pool etc with the 'parent' client
+            AuthenticationInterceptor authInterceptor = new AuthenticationInterceptor(apiCredentials);
+            OkHttpClient.Builder newBuilder = client.newBuilder();
+            newBuilder.interceptors().add(0, authInterceptor);
+            OkHttpClient adaptedClient = newBuilder.build();
+            retrofitBuilder.client(adaptedClient);
+        }
+
+        Retrofit retrofit = retrofitBuilder.build();
         return retrofit.create(serviceClass);
     }
 

@@ -1,12 +1,16 @@
 package com.poloniex.impl;
 
 import com.poloniex.PoloniexApiAsyncRestClient;
+import com.poloniex.domain.account.TransactionHistory;
 import com.poloniex.domain.general.Asset;
 import com.poloniex.domain.market.MarketTicker;
 import com.poloniex.domain.market.OrderBook;
 
+import java.time.Instant;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import static com.poloniex.constant.PoloniexApiConstants.RETURN_DEPOSITS_WITHDRAWALS;
 
 /**
  * Implementation of Poloniex's REST API using Retrofit with asynchronous/non-blocking method calls.
@@ -41,6 +45,17 @@ public class PoloniexApiAsyncRestClientImpl implements PoloniexApiAsyncRestClien
     public CompletableFuture<OrderBook> getOrderBook(String market, Integer limit) {
         CompletableFuture<OrderBook> future = new CompletableFuture<>();
         poloniexApiService.getOrderBook(market, limit).enqueue(new RetrofitCallbackAdapter<>(future));
+        return future;
+    }
+
+    // Account endpoints
+
+    @Override
+    public CompletableFuture<TransactionHistory> getTransactions(Long start, Long end) {
+        CompletableFuture<TransactionHistory> future = new CompletableFuture<>();
+        long nonce = Instant.now().toEpochMilli();
+        poloniexApiService.getTransactions(RETURN_DEPOSITS_WITHDRAWALS, start, end, nonce)
+                .enqueue(new RetrofitCallbackAdapter<>(future));
         return future;
     }
 }

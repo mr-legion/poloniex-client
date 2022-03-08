@@ -1,5 +1,6 @@
 package com.poloniex;
 
+import com.poloniex.domain.account.TransactionHistory;
 import com.poloniex.domain.general.Asset;
 import com.poloniex.domain.market.MarketTicker;
 import com.poloniex.domain.market.OrderBook;
@@ -39,4 +40,14 @@ public interface PoloniexApiAsyncRestClient {
      */
     CompletableFuture<OrderBook> getOrderBook(String market, Integer limit);
 
+    // Account endpoints
+
+    /**
+     * Get transaction history within a range window (asynchronous).
+     *
+     * @param start the start date of the range window in UNIX timestamp format
+     * @param end   the end date of the range window in UNIX timestamp format
+     * @return transactions
+     */
+    CompletableFuture<TransactionHistory> getTransactions(Long start, Long end);
 }
