@@ -1,8 +1,11 @@
 package com.poloniex.constant;
 
+import lombok.experimental.UtilityClass;
+
 /**
  * Constants used throughout Poloniex's API.
  */
+@UtilityClass
 public class PoloniexApiConstants {
 
     /**

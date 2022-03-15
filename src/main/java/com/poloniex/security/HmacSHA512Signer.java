@@ -1,5 +1,6 @@
 package com.poloniex.security;
 
+import lombok.experimental.UtilityClass;
 import org.apache.commons.codec.binary.Hex;
 
 import javax.crypto.Mac;
@@ -11,7 +12,8 @@ import static org.apache.commons.codec.digest.HmacAlgorithms.HMAC_SHA_512;
 /**
  * Utility class to sign messages using HMAC-SHA512.
  */
-public final class HmacSHA512Signer {
+@UtilityClass
+public class HmacSHA512Signer {
 
     /**
      * Sign the given message using the given secret.
