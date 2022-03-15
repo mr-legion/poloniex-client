@@ -1,7 +1,5 @@
 package com.poloniex.constant;
 
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 /**
  * Constants used throughout Poloniex's API.
  */
@@ -33,9 +31,4 @@ public class PoloniexApiConstants {
      * Private API commands.
      */
     public static final String RETURN_DEPOSITS_WITHDRAWALS = "returnDepositsWithdrawals";
-
-    /**
-     * Default ToStringStyle used by toString methods.
-     */
-    public static final ToStringStyle TO_STRING_BUILDER_STYLE = ToStringStyle.SHORT_PREFIX_STYLE;
 }
