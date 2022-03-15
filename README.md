@@ -1,5 +1,5 @@
 # Poloniex API
 
-Unofficial Java API for the Poloniex exchange.
+Unofficial Java client for the Poloniex API.
 
 [Poloniex API Documentation](https://docs.poloniex.com/#introduction)
