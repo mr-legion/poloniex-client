@@ -20,14 +20,14 @@ public class Deposit {
     /**
      * The unique Poloniex specific deposit ID for this deposit.
      */
-    private long id;
+    private Long id;
 
     /**
      * Asset symbol.
      */
     private String asset;
 
-    private double quantity;
+    private Double quantity;
 
     private DepositStatus status;
 
@@ -44,18 +44,18 @@ public class Deposit {
     /**
      * The total number of confirmations for this deposit.
      */
-    private int conf;
+    private Integer conf;
 
     private LocalDateTime dateTime;
 
-    public Deposit(@JsonProperty("depositNumber") long id,
+    public Deposit(@JsonProperty("depositNumber") Long id,
                    @JsonProperty("currency") String asset,
-                   @JsonProperty("amount") double quantity,
+                   @JsonProperty("amount") Double quantity,
                    @JsonProperty("status") DepositStatus status,
                    @JsonProperty("address") String address,
                    @JsonProperty("txid") String txid,
-                   @JsonProperty("confirmations") int conf,
-                   @JsonProperty("timestamp") long timestamp) {
+                   @JsonProperty("confirmations") Integer conf,
+                   @JsonProperty("timestamp") Long timestamp) {
         this.id = id;
         this.asset = asset;
         this.quantity = quantity;

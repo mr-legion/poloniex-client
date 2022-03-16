@@ -26,7 +26,7 @@ public class OrderBook {
     @JsonProperty("isFrozen")
     @JsonSerialize(using = NumericBooleanSerializer.class)
     @JsonDeserialize(using = NumericBooleanDeserializer.class)
-    private boolean frozen;
+    private Boolean frozen;
 
     /**
      * Indicates that orders posted to the market (new or move) must be non-matching orders
@@ -34,10 +34,10 @@ public class OrderBook {
      */
     @JsonSerialize(using = NumericBooleanSerializer.class)
     @JsonDeserialize(using = NumericBooleanDeserializer.class)
-    private boolean postOnly;
+    private Boolean postOnly;
 
     /**
      * An always-incrementing sequence number for this market.
      */
-    private long seq;
+    private Long seq;
 }

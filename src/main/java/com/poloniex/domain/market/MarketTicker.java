@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MarketTicker {
 
-    private int id;
+    private Integer id;
 
     /**
      * Indicates if this market is currently trading or not.
@@ -23,7 +23,7 @@ public class MarketTicker {
     @JsonProperty("isFrozen")
     @JsonSerialize(using = NumericBooleanSerializer.class)
     @JsonDeserialize(using = NumericBooleanDeserializer.class)
-    private boolean frozen;
+    private Boolean frozen;
 
     /**
      * Indicates that orders posted to the market (new or move) must be non-matching orders
@@ -31,11 +31,11 @@ public class MarketTicker {
      */
     @JsonSerialize(using = NumericBooleanSerializer.class)
     @JsonDeserialize(using = NumericBooleanDeserializer.class)
-    private boolean postOnly;
+    private Boolean postOnly;
 
     @JsonSerialize(using = NumericBooleanSerializer.class)
     @JsonDeserialize(using = NumericBooleanDeserializer.class)
-    private boolean marginTradingEnabled;
+    private Boolean marginTradingEnabled;
 
     /**
      * Execution price for the most recent trade for this pair.

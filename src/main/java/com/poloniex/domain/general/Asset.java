@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Asset {
 
-    private int id;
+    private Integer id;
 
     private String name;
 
@@ -41,31 +41,31 @@ public class Asset {
      * The network fee necessary to withdraw this currency.
      */
     @JsonProperty("txFee")
-    private double withdrawFee;
+    private Double withdrawFee;
 
     /**
      * The minimum number of blocks necessary before a deposit can be credited to an account.
      */
     @JsonProperty("minConf")
-    private int minConfirm;
+    private Integer minConfirm;
 
     /**
      * Designates whether deposits and withdrawals are disabled.
      */
-    private boolean disabled;
+    private Boolean disabled;
 
     /**
      * Designates whether this currency has been delisted from the exchange.
      */
-    private boolean delisted;
+    private Boolean delisted;
 
     /**
      * Designates whether trading for this currency is disabled for trading.
      */
-    private boolean frozen;
+    private Boolean frozen;
 
     /**
      * Designates whether this currency is available to this customer due to geofencing restrictions.
      */
-    private boolean geofenced;
+    private Boolean geofenced;
 }

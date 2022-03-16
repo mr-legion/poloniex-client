@@ -43,7 +43,7 @@ public class Adjustment {
      */
     private String asset;
 
-    private double quantity;
+    private Double quantity;
 
     private AdjustmentStatus status;
 
@@ -55,9 +55,9 @@ public class Adjustment {
                       @JsonProperty("adjustmentHelp") String help,
                       @JsonProperty("category") String category,
                       @JsonProperty("currency") String asset,
-                      @JsonProperty("amount") double quantity,
+                      @JsonProperty("amount") Double quantity,
                       @JsonProperty("status") AdjustmentStatus status,
-                      @JsonProperty("timestamp") long timestamp) {
+                      @JsonProperty("timestamp") Long timestamp) {
         this.title = title;
         this.desc = desc;
         this.help = help;

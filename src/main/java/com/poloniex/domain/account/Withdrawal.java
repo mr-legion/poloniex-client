@@ -21,7 +21,7 @@ public class Withdrawal {
     /**
      * The unique Poloniex specific withdrawal ID for this withdrawal.
      */
-    private long id;
+    private Long id;
 
     /**
      * Asset symbol.
@@ -31,8 +31,8 @@ public class Withdrawal {
     /**
      * The total amount withdrawn including the fee.
      */
-    private double quantity;
-    private double fee;
+    private Double quantity;
+    private Double fee;
 
     /**
      * The address to which the withdrawal was made.
@@ -59,15 +59,15 @@ public class Withdrawal {
     private LocalDateTime dateTime;
 
     @JsonCreator
-    public Withdrawal(@JsonProperty("withdrawalNumber") long id,
+    public Withdrawal(@JsonProperty("withdrawalNumber") Long id,
                       @JsonProperty("currency") String asset,
-                      @JsonProperty("amount") double quantity,
-                      @JsonProperty("fee") double fee,
+                      @JsonProperty("amount") Double quantity,
+                      @JsonProperty("fee") Double fee,
                       @JsonProperty("address") String address,
                       @JsonProperty("status") String statusInfo,
                       @JsonProperty("ipAddress") String ipAddress,
                       @JsonProperty("paymentID") String paymentID,
-                      @JsonProperty("timestamp") long timestamp) {
+                      @JsonProperty("timestamp") Long timestamp) {
         String[] statusAndTxid = statusInfo.split(":");
         this.id = id;
         this.asset = asset;
