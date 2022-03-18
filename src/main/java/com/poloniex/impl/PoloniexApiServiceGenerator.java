@@ -1,5 +1,7 @@
 package com.poloniex.impl;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poloniex.PoloniexApiError;
 import com.poloniex.exception.PoloniexApiException;
 import com.poloniex.security.ApiCredentials;
@@ -22,11 +24,16 @@ import static com.poloniex.constant.PoloniexApiConstants.API_BASE_URL;
  */
 public class PoloniexApiServiceGenerator {
 
-    private static final Converter.Factory converterFactory = JacksonConverterFactory.create();
+    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final Converter.Factory converterFactory = JacksonConverterFactory.create(mapper);
     @SuppressWarnings("unchecked")
     private static final Converter<ResponseBody, PoloniexApiError> errorBodyConverter =
             (Converter<ResponseBody, PoloniexApiError>) converterFactory.responseBodyConverter(
                     PoloniexApiError.class, new Annotation[0], null);
+
+    static {
+        mapper.enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL);
+    }
 
     private final OkHttpClient client;
 
