@@ -14,18 +14,31 @@ public class PoloniexApiClientFactory {
 
     private final PoloniexApiServiceGenerator serviceGenerator;
 
-    private final ApiCredentials apiCredentials;
+    private ApiCredentials apiCredentials;
 
     public PoloniexApiClientFactory() {
-        this(new OkHttpClient(), null);
+        this.serviceGenerator = new PoloniexApiServiceGenerator(new OkHttpClient());
     }
 
     public PoloniexApiClientFactory(ApiCredentials apiCredentials) {
-        this(new OkHttpClient(), apiCredentials);
+        this.serviceGenerator = new PoloniexApiServiceGenerator(new OkHttpClient());
+        this.apiCredentials = apiCredentials;
     }
 
-    private PoloniexApiClientFactory(OkHttpClient client, ApiCredentials apiCredentials) {
-        this.serviceGenerator = new PoloniexApiServiceGenerator(client);
+    public PoloniexApiClientFactory(ApiCredentials apiCredentials, ApiInteractionConfig apiInteractionConfig) {
+        this(new OkHttpClient(), apiCredentials, apiInteractionConfig);
+    }
+
+    private PoloniexApiClientFactory(OkHttpClient client,
+                                     ApiCredentials apiCredentials,
+                                     ApiInteractionConfig apiInteractionConfig) {
+        OkHttpClient newClient = client.newBuilder()
+                .proxySelector(new CustomProxySelector(apiInteractionConfig.getProxies()))
+                .addInterceptor(new RateLimitInterceptor(
+                        apiInteractionConfig.getMaxRequestsPerSecond(),
+                        apiInteractionConfig.getMaxApiKeyUsagePerSecond()
+                )).build();
+        this.serviceGenerator = new PoloniexApiServiceGenerator(newClient);
         this.apiCredentials = apiCredentials;
     }
 
