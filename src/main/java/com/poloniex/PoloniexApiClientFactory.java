@@ -29,9 +29,9 @@ public class PoloniexApiClientFactory {
         this(new OkHttpClient(), apiCredentials, apiInteractionConfig);
     }
 
-    private PoloniexApiClientFactory(OkHttpClient client,
-                                     ApiCredentials apiCredentials,
-                                     ApiInteractionConfig apiInteractionConfig) {
+    public PoloniexApiClientFactory(OkHttpClient client,
+                                    ApiCredentials apiCredentials,
+                                    ApiInteractionConfig apiInteractionConfig) {
         OkHttpClient newClient = client.newBuilder()
                 .proxySelector(new CustomProxySelector(apiInteractionConfig.getProxies()))
                 .addInterceptor(new RateLimitInterceptor(
